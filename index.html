@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Plan de Fitness 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0c0c0c;
+      --surface:   #141414;
+      --surface2:  #1c1c1c;
+      --border:    #2a2a2a;
+      --green:     #22c55e;
+      --green-dim: #15803d;
+      --amber:     #f59e0b;
+      --red:       #ef4444;
+      --blue:      #3b82f6;
+      --text:      #e5e5e5;
+      --muted:     #737373;
+      --radius:    12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, #0f2027, #1a3a2a, #0f2027);
+      border-bottom: 1px solid var(--green-dim);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(34,197,94,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(34,197,94,.15);
+      border: 1px solid var(--green-dim);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    header h1 span { color: var(--green); }
+    header p.sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .stat {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 22px;
+      text-align: center;
+    }
+    .stat .val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--green);
+      display: block;
+    }
+    .stat .lbl {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────── */
+    main { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    section { margin-bottom: 56px; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── TIMELINE ────────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 80px 1px 1fr;
+      gap: 0 20px;
+      position: relative;
+    }
+    .tl-time {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      padding-top: 18px;
+      padding-right: 4px;
+    }
+    .tl-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .tl-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      margin-top: 22px;
+      box-shadow: 0 0 10px rgba(34,197,94,.5);
+    }
+    .tl-dot.amber  { background: var(--amber); box-shadow: 0 0 10px rgba(245,158,11,.5); }
+    .tl-dot.blue   { background: var(--blue);  box-shadow: 0 0 10px rgba(59,130,246,.5); }
+    .tl-connector {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      min-height: 20px;
+    }
+    .tl-item:last-child .tl-connector { display: none; }
+
+    .tl-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+    .tl-card:hover { border-color: #3a3a3a; }
+    .tl-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .tl-card .subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .food-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .food-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .food-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    .protein-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(34,197,94,.1);
+      border: 1px solid rgba(34,197,94,.3);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-top: 14px;
+    }
+
+    .supp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .supp-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid;
+    }
+    .supp-tag.green { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: var(--green); }
+    .supp-tag.amber { background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.3); color: var(--amber); }
+    .supp-tag.blue  { background: rgba(59,130,246,.1); border-color: rgba(59,130,246,.3); color: var(--blue); }
+
+    .note-box {
+      background: rgba(34,197,94,.05);
+      border-left: 3px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    .note-box strong { color: var(--text); }
+
+    /* ── SUPPLEMENT GRID ─────────────────────────────── */
+    .supp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+
+    .supp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .supp-card .tier {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .supp-card .tier.t1 { color: var(--green); }
+    .supp-card .tier.t2 { color: var(--amber); }
+    .supp-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .supp-card .dose { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .supp-card .when {
+      font-size: 12px;
+      background: var(--surface2);
+      border-radius: 6px;
+      padding: 6px 10px;
+      color: var(--muted);
+    }
+    .supp-card .when strong { color: var(--text); }
+
+    /* ── TOTALS ──────────────────────────────────────── */
+    .totals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
+    }
+    .total-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .total-card .num {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .total-card .label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ── RULES ───────────────────────────────────────── */
+    .rules-list { display: flex; flex-direction: column; gap: 12px; counter-reset: rules; }
+
+    .rule {
+      counter-increment: rules;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+    .rule::before {
+      content: counter(rules);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(34,197,94,.1);
+      border: 1px solid rgba(34,197,94,.3);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .rule-text { font-size: 14px; line-height: 1.5; }
+    .rule-text strong { color: var(--green); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 540px) {
+      .tl-item { grid-template-columns: 64px 1px 1fr; gap: 0 12px; }
+      .tl-time { font-size: 11px; }
+      header { padding: 36px 16px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="badge">Plan Personalizado 2026</div>
+  <h1>Tu Plan de <span>Alimentación</span><br>y Suplementación</h1>
+  <p class="sub">Recomposición corporal · 38 años · Entrenamiento 4–5 días/semana</p>
+  <div class="stats">
+    <div class="stat"><span class="val">72 kg</span><span class="lbl">Peso actual</span></div>
+    <div class="stat"><span class="val">1.67 m</span><span class="lbl">Estatura</span></div>
+    <div class="stat"><span class="val">~177g</span><span class="lbl">Proteína/día</span></div>
+    <div class="stat"><span class="val">~2,100</span><span class="lbl">Calorías/día</span></div>
+    <div class="stat"><span class="val">3 meses</span><span class="lbl">Entrenando</span></div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HORARIO DIARIO -->
+  <section>
+    <p class="section-title">Horario del día</p>
+
+    <div class="timeline">
+
+      <!-- 6:00am -->
+      <div class="tl-item">
+        <div class="tl-time">6:00 am</div>
+        <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Desayuno</h3>
+          <p class="subtitle">Comida pre-entreno — 4 horas antes del gym</p>
+          <ul class="food-list">
+            <li>5 huevos enteros (revueltos o al gusto)</li>
+            <li>1 taza de avena cocida con agua</li>
+            <li>1 banano</li>
+            <li>Café negro sin azúcar</li>
+          </ul>
+          <div class="protein-tag">~41g de proteína</div>
+          <div class="note-box">No comas nada más entre el desayuno y el gym. Llegas con energía sostenida, no pesado.</div>
+        </div>
+      </div>
+
+      <!-- 10:00am -->
+      <div class="tl-item">
+        <div class="tl-time">10:00 am</div>
+        <div class="tl-line"><div class="tl-dot amber"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Entrenamiento</h3>
+          <p class="subtitle">Sesión de 90 minutos · 4–5 días por semana</p>
+          <div class="note-box">Lleva el shaker preparado desde casa — lo tomas al salir.</div>
+        </div>
+      </div>
+
+      <!-- 11:30am -->
+      <div class="tl-item">
+        <div class="tl-time">11:30 am</div>
+        <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Shake Post-Entreno</h3>
+          <p class="subtitle">Al salir del gym — ventana anabólica máxima</p>
+          <ul class="food-list">
+            <li>1 scoop Whey Nutricost (con agua)</li>
+            <li>5g Creatina Monohidrato en el mismo vaso</li>
+          </ul>
+          <div class="protein-tag">~25g de proteína</div>
+          <div class="supp-tags">
+            <span class="supp-tag green">Whey Nutricost</span>
+            <span class="supp-tag green">Creatina 5g</span>
+          </div>
+          <div class="note-box"><strong>Esto es sagrado.</strong> No se salta. No importa si entrenaste "flojo". El músculo está abierto para absorberla.</div>
+        </div>
+      </div>
+
+      <!-- 12:00pm -->
+      <div class="tl-item">
+        <div class="tl-time">12:00 pm</div>
+        <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Almuerzo</h3>
+          <p class="subtitle">30 minutos después del shake — comida más completa del día</p>
+          <ul class="food-list">
+            <li>200g de carne (pollo, res o pescado)</li>
+            <li>1 taza de arroz cocido</li>
+            <li>Ensalada grande con aceite de oliva y limón</li>
+            <li>½ aguacate</li>
+          </ul>
+          <div class="protein-tag">~48g de proteína</div>
+          <div class="supp-tags">
+            <span class="supp-tag amber">Vitamina D3 2,000 IU</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3:30pm -->
+      <div class="tl-item">
+        <div class="tl-time">3:30 pm</div>
+        <div class="tl-line"><div class="tl-dot blue"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Snack — Trabajo</h3>
+          <p class="subtitle">Elige una opción — sin preparación</p>
+          <ul class="food-list">
+            <li>200g yogur griego natural &nbsp;<span style="color:var(--green);font-size:12px;font-weight:600">(mejor opción)</span></li>
+            <li>3 huevos duros &nbsp;<span style="color:var(--muted);font-size:12px">(más económico)</span></li>
+            <li>1 lata de atún en agua &nbsp;<span style="color:var(--muted);font-size:12px">(más proteína)</span></li>
+          </ul>
+          <div class="protein-tag">~17–25g de proteína</div>
+          <div class="note-box">El yogur griego debe decir <strong>menos de 8g de azúcar</strong> por porción en la etiqueta. Si dice "sabor fresa" o "con frutas", no sirve.</div>
+        </div>
+      </div>
+
+      <!-- 7:00pm -->
+      <div class="tl-item">
+        <div class="tl-time">7:00 pm</div>
+        <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Cena</h3>
+          <p class="subtitle">Menos carbohidratos — menos actividad que en el día</p>
+          <ul class="food-list">
+            <li>200g de carne (puede variar del almuerzo)</li>
+            <li>Ensalada grande con vegetales variados</li>
+            <li>2 tortillas de maíz</li>
+            <li>½ aguacate</li>
+          </ul>
+          <div class="protein-tag">~46g de proteína</div>
+          <div class="supp-tags">
+            <span class="supp-tag blue">Omega 3 — 2 cápsulas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9:30pm -->
+      <div class="tl-item">
+        <div class="tl-time">9:30 pm</div>
+        <div class="tl-line"><div class="tl-dot amber"></div><div class="tl-connector"></div></div>
+        <div class="tl-card">
+          <h3>Antes de Dormir</h3>
+          <p class="subtitle">Recuperación nocturna</p>
+          <div class="supp-tags">
+            <span class="supp-tag amber">Magnesio Glicinato 300mg</span>
+          </div>
+          <div class="note-box">El 90% de la testosterona y hormona de crecimiento se producen mientras duermes. El magnesio mejora la calidad del sueño profundo.</div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </section>
+
+  <!-- SUPLEMENTOS -->
+  <section>
+    <p class="section-title">Plan de Suplementación</p>
+    <div class="supp-grid">
+
+      <div class="supp-card">
+        <div class="tier t1">Tier 1 — Esencial</div>
+        <h4>Whey Nutricost</h4>
+        <div class="dose">1 scoop · 25g proteína</div>
+        <div class="when"><strong>11:30am</strong> — Al salir del gym con agua</div>
+      </div>
+
+      <div class="supp-card">
+        <div class="tier t1">Tier 1 — Esencial</div>
+        <h4>Creatina Monohidrato</h4>
+        <div class="dose">5g diarios</div>
+        <div class="when"><strong>11:30am</strong> — Con el shake post-entreno. Días sin gym: con el almuerzo</div>
+      </div>
+
+      <div class="supp-card">
+        <div class="tier t2">Tier 2 — Optimización</div>
+        <h4>Vitamina D3</h4>
+        <div class="dose">2,000 IU diarios</div>
+        <div class="when"><strong>12:00pm</strong> — Con el almuerzo (se absorbe mejor con grasa)</div>
+      </div>
+
+      <div class="supp-card">
+        <div class="tier t2">Tier 2 — Optimización</div>
+        <h4>Omega 3</h4>
+        <div class="dose">2 cápsulas · 2–3g EPA+DHA</div>
+        <div class="when"><strong>7:00pm</strong> — Con la cena</div>
+      </div>
+
+      <div class="supp-card">
+        <div class="tier t2">Tier 2 — Optimización</div>
+        <h4>Magnesio Glicinato</h4>
+        <div class="dose">300mg</div>
+        <div class="when"><strong>9:30pm</strong> — 30 min antes de dormir</div>
+      </div>
+
+      <div class="supp-card" style="border-color:#3f3f3f">
+        <div class="tier" style="color:var(--muted)">Terminar y no reponer</div>
+        <h4 style="color:var(--muted)">Óxido Nítrico Nutricost</h4>
+        <div class="dose" style="color:#555">750mg · dosis insuficiente</div>
+        <div class="when" style="color:#555">Si lo usas: 30–40 min antes del gym, no interdiario</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOTALES -->
+  <section>
+    <p class="section-title">Totales del día</p>
+    <div class="totals-grid">
+      <div class="total-card">
+        <div class="num">~177g</div>
+        <div class="label">Proteína</div>
+      </div>
+      <div class="total-card">
+        <div class="num">~240g</div>
+        <div class="label">Carbohidratos</div>
+      </div>
+      <div class="total-card">
+        <div class="num">~65g</div>
+        <div class="label">Grasas</div>
+      </div>
+      <div class="total-card">
+        <div class="num">~2,100</div>
+        <div class="label">Calorías</div>
+      </div>
+      <div class="total-card">
+        <div class="num">3L</div>
+        <div class="label">Agua mínima</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGLAS -->
+  <section>
+    <p class="section-title">Reglas no negociables</p>
+    <div class="rules-list">
+      <div class="rule">
+        <div class="rule-text">El <strong>shake de las 11:30am no se salta</strong> — ni los días que entrenaste "flojo". Es el momento de mayor absorción muscular del día.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-text"><strong>3 litros de agua al día</strong> mínimo. Empieza desde el desayuno — no esperes a tener sed. La deshidratación reduce el rendimiento hasta un 20%.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-text"><strong>Pesa la carne</strong>. Compra una báscula de cocina. 200g cocinado es diferente a 200g crudo. Sin medidas, no hay control.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-text">El <strong>yogur griego debe decir menos de 8g de azúcar</strong> por porción. Si tiene sabor o frutas añadidas, no sirve para este plan.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-text"><strong>Duerme 7–8 horas.</strong> A los 38 años la testosterona y la hormona de crecimiento se producen principalmente mientras dormís. Sin sueño, no hay músculo. Es biología.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Plan de alimentación y suplementación personalizado · 2026<br>
+  Recomposición corporal — Construido en base a evidencia científica actual
+</footer>
+
+</body>
+</html>
