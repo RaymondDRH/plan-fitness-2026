@@ -102,6 +102,39 @@
       letter-spacing: .08em;
     }
 
+    /* ── SECTION NAV ────────────────────────────────── */
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,12,12,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+    }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.4);
+      color: var(--green);
+    }
+
     /* ── LAYOUT ─────────────────────────────────────── */
     main { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
 
@@ -323,6 +356,228 @@
     .rule-text { font-size: 14px; line-height: 1.5; }
     .rule-text strong { color: var(--green); }
 
+    /* ── TRAINING SECTION ────────────────────────────── */
+    .week-overview {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+    .week-day {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .week-day .wd-name {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+    .week-day .wd-type {
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .week-day.train {
+      border-color: rgba(34,197,94,0.35);
+      background: rgba(34,197,94,0.04);
+    }
+    .week-day.train .wd-type { color: var(--green); }
+    .week-day.rest .wd-type  { color: var(--muted); font-weight: 400; font-size: 10px; }
+
+    /* Progression rule box */
+    .prog-box {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 24px;
+    }
+    .prog-box h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+    .prog-box p { font-size: 14px; line-height: 1.6; }
+    .prog-box strong { color: var(--amber); }
+
+    /* Day tab bar */
+    .day-tabs-bar {
+      position: sticky;
+      top: 53px;
+      z-index: 90;
+      background: rgba(12,12,12,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      margin: 0 -20px 24px;
+    }
+    .day-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 0 20px;
+    }
+    .day-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 6px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+      line-height: 1.2;
+    }
+    .day-tab small {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      margin-top: 2px;
+      opacity: 0.6;
+    }
+    .day-tab.active {
+      background: rgba(34,197,94,0.12);
+      border-color: rgba(34,197,94,0.5);
+      color: var(--green);
+    }
+    .day-tab:hover:not(.active) {
+      border-color: #3a3a3a;
+      color: var(--text);
+    }
+
+    /* Day panels */
+    .day-panel { display: none; }
+    .day-panel.active { display: block; }
+
+    /* Exercise list */
+    .ex-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+
+    details.ex-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    details.ex-card[open] {
+      border-color: rgba(34,197,94,0.4);
+    }
+
+    summary.ex-summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 16px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    summary.ex-summary::-webkit-details-marker { display: none; }
+
+    .ex-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.25);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ex-info { flex: 1; min-width: 0; }
+    .ex-name {
+      font-size: 14px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .ex-meta { font-size: 12px; color: var(--muted); }
+    .ex-arrow {
+      color: var(--muted);
+      font-size: 18px;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    details.ex-card[open] .ex-arrow { transform: rotate(90deg); }
+
+    .ex-body { padding: 0 16px 16px; }
+
+    .ex-note {
+      background: rgba(34,197,94,0.05);
+      border-left: 3px solid var(--green-dim);
+      border-radius: 0 6px 6px 0;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .ex-note strong { color: var(--text); }
+
+    /* 16:9 responsive video embed */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #000;
+      margin-bottom: 8px;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+      border-radius: 8px;
+    }
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--surface2);
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .video-placeholder .play-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(34,197,94,0.15);
+      border: 2px solid rgba(34,197,94,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .video-source {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: right;
+      margin-top: 4px;
+    }
+
     /* ── FOOTER ──────────────────────────────────────── */
     footer {
       text-align: center;
@@ -337,6 +592,8 @@
       .tl-item { grid-template-columns: 64px 1px 1fr; gap: 0 12px; }
       .tl-time { font-size: 11px; }
       header { padding: 36px 16px 28px; }
+      .week-day .wd-name { font-size: 9px; }
+      .week-day .wd-type { font-size: 10px; }
     }
   </style>
 </head>
@@ -345,10 +602,10 @@
 <!-- HEADER -->
 <header>
   <div class="badge">Plan Personalizado 2026</div>
-  <h1>Tu Plan de <span>Alimentación</span><br>y Suplementación</h1>
-  <p class="sub">Recomposición corporal · 38 años · Entrenamiento 4–5 días/semana</p>
+  <h1>Tu Plan de <span>Fitness</span> Completo</h1>
+  <p class="sub">Recomposición corporal · 38 años · Gym completo · 4 días/semana</p>
   <div class="stats">
-    <div class="stat"><span class="val">72 kg</span><span class="lbl">Peso actual</span></div>
+    <div class="stat"><span class="val">74 kg</span><span class="lbl">Peso actual</span></div>
     <div class="stat"><span class="val">1.67 m</span><span class="lbl">Estatura</span></div>
     <div class="stat"><span class="val">~177g</span><span class="lbl">Proteína/día</span></div>
     <div class="stat"><span class="val">~2,100</span><span class="lbl">Calorías/día</span></div>
@@ -356,15 +613,21 @@
   </div>
 </header>
 
+<!-- PAGE NAV -->
+<nav class="page-nav">
+  <a class="nav-btn" href="#alimentacion">Alimentación</a>
+  <a class="nav-btn" href="#suplementacion">Suplementos</a>
+  <a class="nav-btn" href="#entrenamiento">Entrenamiento</a>
+</nav>
+
 <main>
 
-  <!-- HORARIO DIARIO -->
-  <section>
-    <p class="section-title">Horario del día</p>
+  <!-- ALIMENTACIÓN -->
+  <section id="alimentacion">
+    <p class="section-title">Horario del día — Alimentación</p>
 
     <div class="timeline">
 
-      <!-- 6:00am -->
       <div class="tl-item">
         <div class="tl-time">6:00 am</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
@@ -385,24 +648,22 @@
         </div>
       </div>
 
-      <!-- 10:00am -->
       <div class="tl-item">
         <div class="tl-time">10:00 am</div>
         <div class="tl-line"><div class="tl-dot amber"></div><div class="tl-connector"></div></div>
         <div class="tl-card">
           <h3>Entrenamiento</h3>
-          <p class="subtitle">Sesión de 90 minutos · 4–5 días por semana</p>
+          <p class="subtitle">Sesión de 90 minutos · 4 días por semana</p>
           <div class="note-box">Lleva el shaker preparado desde casa — lo tomas al salir.</div>
         </div>
       </div>
 
-      <!-- 11:30am -->
       <div class="tl-item">
         <div class="tl-time">11:30 am</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
         <div class="tl-card">
           <h3>Shake Post-Entreno</h3>
-          <p class="subtitle">Al salir del gym — ventana anabólica máxima</p>
+          <p class="subtitle">Al salir del gym — sagrado, no se salta</p>
           <ul class="food-list">
             <li>1 scoop Whey Nutricost (con agua)</li>
             <li>5g Creatina Monohidrato en el mismo vaso</li>
@@ -416,7 +677,6 @@
         </div>
       </div>
 
-      <!-- 12:00pm -->
       <div class="tl-item">
         <div class="tl-time">12:00 pm</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
@@ -437,7 +697,6 @@
         </div>
       </div>
 
-      <!-- 3:30pm -->
       <div class="tl-item">
         <div class="tl-time">3:30 pm</div>
         <div class="tl-line"><div class="tl-dot blue"></div><div class="tl-connector"></div></div>
@@ -454,7 +713,6 @@
         </div>
       </div>
 
-      <!-- 7:00pm -->
       <div class="tl-item">
         <div class="tl-time">7:00 pm</div>
         <div class="tl-line"><div class="tl-dot"></div><div class="tl-connector"></div></div>
@@ -474,7 +732,6 @@
         </div>
       </div>
 
-      <!-- 9:30pm -->
       <div class="tl-item">
         <div class="tl-time">9:30 pm</div>
         <div class="tl-line"><div class="tl-dot amber"></div><div class="tl-connector"></div></div>
@@ -488,11 +745,11 @@
         </div>
       </div>
 
-    </div><!-- /timeline -->
+    </div>
   </section>
 
   <!-- SUPLEMENTOS -->
-  <section>
+  <section id="suplementacion">
     <p class="section-title">Plan de Suplementación</p>
     <div class="supp-grid">
 
@@ -542,9 +799,8 @@
         <div class="tier t2">Tier 2 — Optimización</div>
         <h4>Tongkat Ali</h4>
         <div class="dose">400–600mg</div>
-        <div class="when"><strong>6:00am</strong> — Con el desayuno. Único booster natural con evidencia humana real (+37% testosterona en meta-análisis). Andrew Huberman lo usa personalmente.</div>
+        <div class="when"><strong>6:00am</strong> — Con el desayuno. Único booster natural con evidencia humana real (+37% en meta-análisis). Andrew Huberman lo usa personalmente.</div>
       </div>
-
 
     </div>
   </section>
@@ -553,26 +809,11 @@
   <section>
     <p class="section-title">Totales del día</p>
     <div class="totals-grid">
-      <div class="total-card">
-        <div class="num">~177g</div>
-        <div class="label">Proteína</div>
-      </div>
-      <div class="total-card">
-        <div class="num">~240g</div>
-        <div class="label">Carbohidratos</div>
-      </div>
-      <div class="total-card">
-        <div class="num">~65g</div>
-        <div class="label">Grasas</div>
-      </div>
-      <div class="total-card">
-        <div class="num">~2,100</div>
-        <div class="label">Calorías</div>
-      </div>
-      <div class="total-card">
-        <div class="num">3L</div>
-        <div class="label">Agua mínima</div>
-      </div>
+      <div class="total-card"><div class="num">~177g</div><div class="label">Proteína</div></div>
+      <div class="total-card"><div class="num">~240g</div><div class="label">Carbohidratos</div></div>
+      <div class="total-card"><div class="num">~65g</div><div class="label">Grasas</div></div>
+      <div class="total-card"><div class="num">~2,100</div><div class="label">Calorías</div></div>
+      <div class="total-card"><div class="num">3L</div><div class="label">Agua mínima</div></div>
     </div>
   </section>
 
@@ -593,17 +834,516 @@
         <div class="rule-text">El <strong>yogur griego debe decir menos de 8g de azúcar</strong> por porción. Si tiene sabor o frutas añadidas, no sirve para este plan.</div>
       </div>
       <div class="rule">
-        <div class="rule-text"><strong>Duerme 7–8 horas.</strong> A los 38 años la testosterona y la hormona de crecimiento se producen principalmente mientras dormís. Sin sueño, no hay músculo. Es biología.</div>
+        <div class="rule-text"><strong>Duerme 7–8 horas.</strong> A los 38 años la testosterona y la hormona de crecimiento se producen principalmente mientras duermes. Sin sueño, no hay músculo. Es biología.</div>
       </div>
     </div>
+  </section>
+
+  <!-- ENTRENAMIENTO -->
+  <section id="entrenamiento">
+    <p class="section-title">Plan de Entrenamiento — Upper/Lower 12 Semanas</p>
+
+    <!-- Semana visual -->
+    <div class="week-overview">
+      <div class="week-day train">
+        <div class="wd-name">Lun</div>
+        <div class="wd-type">Lower A</div>
+      </div>
+      <div class="week-day train">
+        <div class="wd-name">Mar</div>
+        <div class="wd-type">Upper A</div>
+      </div>
+      <div class="week-day rest">
+        <div class="wd-name">Mié</div>
+        <div class="wd-type">Descanso</div>
+      </div>
+      <div class="week-day train">
+        <div class="wd-name">Jue</div>
+        <div class="wd-type">Lower B</div>
+      </div>
+      <div class="week-day train">
+        <div class="wd-name">Vie</div>
+        <div class="wd-type">Upper B</div>
+      </div>
+      <div class="week-day rest">
+        <div class="wd-name">Sáb</div>
+        <div class="wd-type">Descanso</div>
+      </div>
+      <div class="week-day rest">
+        <div class="wd-name">Dom</div>
+        <div class="wd-type">Descanso</div>
+      </div>
+    </div>
+
+    <!-- Regla de progresión -->
+    <div class="prog-box">
+      <h4>Regla de Progresión — La más importante</h4>
+      <p>Cuando completes <strong>todas las reps del rango superior</strong> en 2 sesiones seguidas → sube <strong>2.5kg</strong> la próxima semana. Sin esta regla no hay crecimiento, sin importar cuán buena sea la rutina. Termina cada serie sintiendo que te quedan <strong>1–2 repeticiones</strong> más en el tanque.</p>
+    </div>
+
+    <!-- Day tabs -->
+    <div class="day-tabs-bar">
+      <div class="day-tabs">
+        <button class="day-tab active" data-panel="lower-a">
+          Lower A<small>Lunes · Cuádriceps</small>
+        </button>
+        <button class="day-tab" data-panel="upper-a">
+          Upper A<small>Martes · Empuje</small>
+        </button>
+        <button class="day-tab" data-panel="lower-b">
+          Lower B<small>Jueves · Post. cadena</small>
+        </button>
+        <button class="day-tab" data-panel="upper-b">
+          Upper B<small>Viernes · Jalón</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- LOWER A -->
+    <div class="day-panel active" id="lower-a">
+      <div class="ex-list">
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">1</div>
+            <div class="ex-info">
+              <span class="ex-name">Sentadilla con barra</span>
+              <span class="ex-meta">4 series × 5–8 reps &nbsp;·&nbsp; 3 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note"><strong>El ejercicio rey.</strong> Profundidad completa SIEMPRE — hasta que los muslos queden paralelos al piso o más abajo. Si no llegas, trabaja movilidad de tobillo y cadera antes de cargar peso.</p>
+            <div class="video-wrap" data-vid="bEv6CCg2BC8">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Squat Perfect Technique</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">2</div>
+            <div class="ex-info">
+              <span class="ex-name">Bulgarian Split Squat</span>
+              <span class="ex-meta">3 series × 8–10 reps/pierna &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Pie trasero elevado en banco, torso erguido. Es incómoda al principio — completamente normal. Activa más cuádriceps, glúteo e isquiotibiales que la sentadilla convencional (estudio 2022). <strong>Obligatoria para piernas delgadas.</strong></p>
+            <div class="video-wrap" data-vid="A3ctWjao8cc">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">The Perfect Bulgarian Split Squat — 5 pasos</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">3</div>
+            <div class="ex-info">
+              <span class="ex-name">Prensa de pierna</span>
+              <span class="ex-meta">3 series × 10–12 reps &nbsp;·&nbsp; 90 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Pies a la altura de hombros en la plataforma. Baja hasta 90° de rodilla sin despegar la espalda baja. Agrega volumen al cuádriceps sin tanto desgaste del sistema nervioso como la sentadilla.</p>
+            <div class="video-wrap" data-vid="8zWDuWKdBZU">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — The Perfect Leg Day</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">4</div>
+            <div class="ex-info">
+              <span class="ex-name">Extensión de cuádriceps (máquina)</span>
+              <span class="ex-meta">3 series × 12–15 reps &nbsp;·&nbsp; 60 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Al final de la sesión, cuando ya estás cansado. Aislamiento puro del cuádriceps. Contracción completa arriba, baja lento (2–3 segundos). No se usa peso pesado aquí.</p>
+            <div class="video-wrap" data-vid="H6mRkx1x77k">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Science-Based Leg Day</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">5</div>
+            <div class="ex-info">
+              <span class="ex-name">Pantorrillas de pie (Calf Raise)</span>
+              <span class="ex-meta">4 series × 12–15 reps &nbsp;·&nbsp; 60 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Rango completo — sube hasta la punta máxima, baja hasta sentir el estiramiento. Sin rebotes. Las pantorrillas necesitan rango completo de movimiento para crecer, no peso máximo.</p>
+            <div class="video-wrap" data-vid="21inrjhoFkQ">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — The Most Scientific Way to Train Calves</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- UPPER A -->
+    <div class="day-panel" id="upper-a">
+      <div class="ex-list">
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">1</div>
+            <div class="ex-info">
+              <span class="ex-name">Press de banca plano con barra</span>
+              <span class="ex-meta">4 series × 5–8 reps &nbsp;·&nbsp; 3 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Escápulas retraídas y bajas antes de tocar la barra. Baja la barra hasta el pecho (no al cuello). Pies firmes en el piso. <strong>No arques la espalda baja</strong> de forma exagerada.</p>
+            <div class="video-wrap" data-vid="vcBig73ojpE">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Bench Press Perfect Technique</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">2</div>
+            <div class="ex-info">
+              <span class="ex-name">Press inclinado con mancuernas</span>
+              <span class="ex-meta">3 series × 8–12 reps &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Banco inclinado a 30–45°. Mancuernas a la altura del pecho, codos a 45° del torso (no abiertos a 90°). Trabaja la parte superior del pecho, que es la que da el "volumen" al pectoral.</p>
+            <div class="video-wrap" data-vid="nwUjPJR5wxw">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Incline Dumbbell Press — Technique & Mistakes</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">3</div>
+            <div class="ex-info">
+              <span class="ex-name">Press militar con barra (Overhead Press)</span>
+              <span class="ex-meta">3 series × 8–10 reps &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">De pie o sentado. Core activado, no doblar la espalda hacia atrás para "ayudarse". Barra baja hasta la clavícula, sube en línea recta. Da anchura a los hombros que ninguna otra máquina da.</p>
+            <div class="video-wrap" data-vid="_RlRDWO2jfg">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Build Bigger Shoulders, Overhead Press</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">4</div>
+            <div class="ex-info">
+              <span class="ex-name">Elevaciones laterales con mancuernas</span>
+              <span class="ex-meta">3 series × 12–15 reps &nbsp;·&nbsp; 60 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Codos ligeramente flexionados. Sube hasta que los brazos queden paralelos al piso — no más arriba. Controla la bajada (2 segundos). No uses impulso del torso. El peso debe ser ligero.</p>
+            <div class="video-wrap" data-vid="DquLYDI-CmE">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Fix Your Lateral Raises — Jeff Nippard tips</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">5</div>
+            <div class="ex-info">
+              <span class="ex-name">Fondos en paralelas o Press francés</span>
+              <span class="ex-meta">3 series × 10–12 reps &nbsp;·&nbsp; 90 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Si las paralelas son accesibles y puedes hacerlas: úsalas. Si no tienes fuerza suficiente todavía: Press francés con barra EZ (baja la barra hacia la frente, codos apuntando al techo). Los tríceps forman el 60% del brazo.</p>
+            <div class="video-wrap" data-vid="popGXI-qs98">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — How To Build Huge Triceps</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- LOWER B -->
+    <div class="day-panel" id="lower-b">
+      <div class="ex-list">
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">1</div>
+            <div class="ex-info">
+              <span class="ex-name">Peso muerto convencional</span>
+              <span class="ex-meta">4 series × 5–8 reps &nbsp;·&nbsp; 3 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note"><strong>Técnica PRIMERO, peso después.</strong> Espalda neutra en todo momento — no redondear la espalda baja. Pies a la altura de caderas, barra sobre el empeine. La barra sube pegada a las piernas. Un error de técnica puede sacarte semanas.</p>
+            <div class="video-wrap" data-vid="VL5Ab0T07e4">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Build A Bigger Deadlift, Perfect Technique</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">2</div>
+            <div class="ex-info">
+              <span class="ex-name">Hip Thrust con barra</span>
+              <span class="ex-meta">3 series × 10–12 reps &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Hombros apoyados en el banco, barra sobre las caderas (usa una almohadilla). Sube la cadera hasta que quede paralela al piso. Contracción máxima arriba, baja lento. Inventado por Bret Contreras — el mejor ejercicio del mundo para glúteos.</p>
+            <div class="video-wrap" data-vid="qFxTNOiQIAU">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Bret Contreras "The Glute Guy" — Hip Thrust Tutorial</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">3</div>
+            <div class="ex-info">
+              <span class="ex-name">Romanian Deadlift (RDL)</span>
+              <span class="ex-meta">3 series × 10–12 reps &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Rodillas casi rectas (ligera flexión). Baja la barra deslizándola por las piernas, hasta sentir el estiramiento en la parte trasera del muslo. La cadera va hacia atrás, no la espalda hacia abajo. Si no sientes los isquiotibiales, algo está mal.</p>
+            <div class="video-wrap" data-vid="_oyxCn2iSjU">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — HOW TO DO Romanian Deadlifts</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">4</div>
+            <div class="ex-info">
+              <span class="ex-name">Curl femoral acostado (máquina)</span>
+              <span class="ex-meta">3 series × 12–15 reps &nbsp;·&nbsp; 60 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Contracción completa al doblar la rodilla, baja lento (3 segundos). No dejes que la cadera se levante. Los isquiotibiales necesitan trabajo tanto en elongación (RDL) como en contracción (curl) para desarrollarse completamente.</p>
+            <div class="video-wrap" data-vid="0a_fVS2s4Ho">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Most Effective Way to Train Hamstrings</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">5</div>
+            <div class="ex-info">
+              <span class="ex-name">Pantorrillas sentado (Seated Calf Raise)</span>
+              <span class="ex-meta">4 series × 12–15 reps &nbsp;·&nbsp; 60 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">La versión sentada trabaja el músculo sóleo (debajo del gemelo), diferente a la de pie. Haciendo ambas versiones cada semana trabajas la pantorrilla completa. Mismo principio: rango completo, sin rebotes.</p>
+            <div class="video-wrap" data-vid="21inrjhoFkQ">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — The Most Scientific Way to Train Calves</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- UPPER B -->
+    <div class="day-panel" id="upper-b">
+      <div class="ex-list">
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">1</div>
+            <div class="ex-info">
+              <span class="ex-name">Jalón al pecho (Lat Pulldown)</span>
+              <span class="ex-meta">4 series × 8–10 reps &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Agarre pronado (palmas hacia adelante), ancho de hombros. Jala hacia el pecho, no hacia atrás. Pecho levantado, codos apuntando hacia el piso. Este ejercicio construye la "V" de la espalda — el dorsal ancho.</p>
+            <div class="video-wrap" data-vid="O94yEoGXtBY">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — V-Tapered Back, Lat Training</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">2</div>
+            <div class="ex-info">
+              <span class="ex-name">Remo con barra</span>
+              <span class="ex-meta">4 series × 8–10 reps &nbsp;·&nbsp; 2 min descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Torso casi paralelo al piso (45–60°). Jala la barra hacia el abdomen bajo. Codos pegados al cuerpo. Construye el grosor de la espalda — lo que da esa espalda "densa" vista de lado.</p>
+            <div class="video-wrap" data-vid="axoeDmW0oAY">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Thick Back with Perfect Rowing Technique</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">3</div>
+            <div class="ex-info">
+              <span class="ex-name">Remo con mancuerna (unilateral)</span>
+              <span class="ex-meta">3 series × 10–12 reps &nbsp;·&nbsp; 90 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Apoya una mano y rodilla en el banco. La mancuerna sube hacia la cadera, no hacia el hombro. Rango completo: baja hasta que el brazo esté completamente extendido. Trabaja cada lado por separado para evitar desequilibrios.</p>
+            <div class="video-wrap" data-vid="djKXLt7kv7Q">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — How To Do Dumbbell Rows</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">4</div>
+            <div class="ex-info">
+              <span class="ex-name">Curl con barra recta o EZ</span>
+              <span class="ex-meta">3 series × 10–12 reps &nbsp;·&nbsp; 90 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Codos pegados al cuerpo, sin balancear el torso. Sube controlado, baja lento (2–3 segundos). La barra EZ es más cómoda para las muñecas. El curl no es complicado — hazlo bien y pesado progresivamente.</p>
+            <div class="video-wrap" data-vid="i1YgFZB6alI">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — How To Build Huge Biceps</p>
+          </div>
+        </details>
+
+        <details class="ex-card">
+          <summary class="ex-summary">
+            <div class="ex-num">5</div>
+            <div class="ex-info">
+              <span class="ex-name">Curl martillo con mancuernas</span>
+              <span class="ex-meta">2 series × 12–15 reps &nbsp;·&nbsp; 60 seg descanso</span>
+            </div>
+            <span class="ex-arrow">›</span>
+          </summary>
+          <div class="ex-body">
+            <p class="ex-note">Agarre neutro (pulgares apuntando hacia arriba, como un martillo). Trabaja el braquial, el músculo debajo del bíceps que lo "empuja hacia afuera" dando más grosor al brazo. Complemento perfecto al curl con barra.</p>
+            <div class="video-wrap" data-vid="GNO4OtYoCYk">
+              <div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>
+            </div>
+            <p class="video-source">Jeff Nippard — Best and Worst Biceps Exercises</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
   </section>
 
 </main>
 
 <footer>
-  Plan de alimentación y suplementación personalizado · 2026<br>
-  Recomposición corporal — Construido en base a evidencia científica actual
+  Plan de fitness personalizado · 2026<br>
+  Alimentación · Suplementación · Entrenamiento — Basado en evidencia científica actual<br>
+  <span style="margin-top:6px;display:block">Referentes: Jeff Nippard · Dr. Mike Israetel · Brad Schoenfeld · Bret Contreras · Andrew Huberman</span>
 </footer>
+
+<script>
+  /* Day tab switching */
+  const tabs = document.querySelectorAll('.day-tab');
+  const panels = document.querySelectorAll('.day-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      const panelId = tab.dataset.panel;
+      document.getElementById(panelId).classList.add('active');
+    });
+  });
+
+  /* Lazy load YouTube videos when exercise card is opened */
+  document.querySelectorAll('.video-wrap').forEach(wrap => {
+    const card = wrap.closest('details');
+    if (!card) return;
+    card.addEventListener('toggle', function () {
+      if (this.open && !wrap.querySelector('iframe')) {
+        const vid = wrap.dataset.vid;
+        wrap.innerHTML = `<iframe
+          src="https://www.youtube-nocookie.com/embed/${vid}?rel=0&modestbranding=1"
+          title="Tutorial de ejercicio"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>`;
+      }
+    });
+  });
+
+  /* Highlight active section in nav on scroll */
+  const sections = document.querySelectorAll('section[id]');
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navBtns.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
 
 </body>
 </html>
