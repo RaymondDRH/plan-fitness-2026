@@ -239,7 +239,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
   <div class="wrap">
     <div class="hero__top">
       <div class="hero__id">
-        <span class="tag"><span class="dot"></span>Atleta · Activo</span>
+        <span class="tag"><span class="dot"></span>Activo</span>
         <h1 class="hero__name">RAY<em>MOND</em></h1>
         <p class="hero__goal">Objetivo · <b>Recomposición corporal</b> — músculo + pérdida de grasa</p>
       </div>
@@ -501,6 +501,13 @@ const DAYS = [
     {n:'Elevaciones laterales',      sets:'4 × 12–15', vid:'DquLYDI-CmE', cue:'Codos ligeramente flexionados. Sube al <b>nivel del hombro</b>.'},
     {n:'Fondos / Press francés',     sets:'4 × 10–12', vid:'popGXI-qs98', cue:'Paralelas: inclínate al frente para <b>pecho</b>. Press francés si no llegas.'}
   ]},
+  { key:'core', tab:'Miércoles', sub:'Core · Cardio', focus:'Abs · Zone 2', vol:'~12 sets', time:'~50 min', ex:[
+    {n:'Plancha frontal',           sets:'3 × 40 seg',  vid:'44ScXWFaVBs', cue:'Cuerpo recto de cabeza a talones. <b>No dejes caer las caderas</b>.'},
+    {n:'Crunch en máquina',         sets:'3 × 15',      vid:'XydnZuKQS3k', cue:'Aprieta el abdomen en la parte más baja. <b>No uses el cuello</b>.'},
+    {n:'Elevación piernas colgado', sets:'3 × 10–12',   vid:'Pr1ieGZ5atk', cue:'Piernas juntas, sube controlado. <b>Sin impulso</b>.'},
+    {n:'Bird Dog',                  sets:'3 × 10/lado', vid:'wiFNA3sqjCA', cue:'Columna neutra. Extiende brazo y pierna opuestos al mismo tiempo.'},
+    {n:'Zone 2 Cardio',             sets:'1 × 30 min',  vid:null,          cue:'Caminadora, bici o elíptica a <b>60–70% de tu FC máxima</b>. Debes poder mantener una conversación.'}
+  ]},
   { key:'lowerB', tab:'Lower', sub:'B · Posterior', focus:'Isquios · Glúteos · Gemelos', vol:'~22 sets', time:'60–70 min', ex:[
     {n:'Peso muerto convencional', sets:'5 × 5–8',   vid:'VL5Ab0T07e4', cue:'Espalda neutra <b>SIEMPRE</b>. Un error de técnica puede sacarte semanas.'},
     {n:'Hip Thrust con barra',     sets:'4 × 10–12', vid:'qFxTNOiQIAU', cue:'Hombros en banco. Aprieta glúteo 1s arriba. Cadera <b>paralela</b> al suelo.'},
@@ -518,11 +525,11 @@ const DAYS = [
 ];
 
 const WEEK = [
-  {d:'Lun',t:'Lower A',train:'lowerA'},
-  {d:'Mar',t:'Upper A',train:'upperA'},
-  {d:'Mié',t:'Rest',   train:null},
-  {d:'Jue',t:'Lower B',train:'lowerB'},
-  {d:'Vie',t:'Upper B',train:'upperB'}
+  {d:'Lun',t:'Lower A',  train:'lowerA'},
+  {d:'Mar',t:'Upper A',  train:'upperA'},
+  {d:'Mié',t:'Core+Cardio',train:'core'},
+  {d:'Jue',t:'Lower B',  train:'lowerB'},
+  {d:'Vie',t:'Upper B',  train:'upperB'}
 ];
 
 /* THEME */
@@ -601,14 +608,8 @@ $('#dayPanels').innerHTML=DAYS.map((d,di)=>`
           <span class="ex__caret"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
         </button>
         <div class="ex__body"><div class="ex__inner"><div class="ex__pad">
-          <div class="video" data-vid="${e.vid}">
-            <div class="video__poster" role="button" aria-label="Reproducir técnica">
-              <span class="video__play">
-                <span class="pbtn"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span>
-                <span>Ver técnica</span>
-              </span>
-            </div>
-          </div>
+          ${e.vid?`<div class="video" data-vid="${e.vid}"><div class="video__poster" role="button" aria-label="Reproducir técnica"><span class="video__play"><span class="pbtn"><svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></span><span>Ver técnica</span></span></div></div>`:''}
+
           <p class="ex__cue">${e.cue}</p>
           <div class="sets" data-sets="${parseInt(e.sets)||3}">
             <span class="sets__lbl">Series</span>
