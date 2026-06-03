@@ -154,7 +154,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
 .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:24px}
 .day{aspect-ratio:1/1.25;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 2px;transition:all .25s}
 .day__d{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint)}
-.day__t{font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1;text-transform:uppercase}
+.day__t{font-family:var(--font-display);font-weight:700;font-size:clamp(9px,2.5vw,15px);line-height:1;text-transform:uppercase}
 .day.rest .day__t{color:var(--text-faint)}
 .day.train{border-color:rgba(var(--accent-rgb),.30)}
 .day.train .day__t{color:var(--accent);transition:color .3s}
@@ -230,11 +230,6 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
       <a href="#suplementos" data-spy="suplementos">Suplementos</a>
       <a href="#entrenamiento" data-spy="entrenamiento">Entreno</a>
     </nav>
-    <div class="swatches" role="group" aria-label="Color de acento">
-      <button class="swatch swatch--volt"   data-set-theme="volt"   aria-pressed="true"  title="Volt"></button>
-      <button class="swatch swatch--orange" data-set-theme="orange" aria-pressed="false" title="Naranja"></button>
-      <button class="swatch swatch--cyan"   data-set-theme="cyan"   aria-pressed="false" title="Cyan"></button>
-    </div>
   </div>
 </header>
 
