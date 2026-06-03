@@ -133,6 +133,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
 .meal.done .check,.ex.done .check{background:var(--accent);border-color:var(--accent);box-shadow:0 0 14px var(--glow)}
 .meal.done .check svg,.ex.done .check svg{opacity:1;transform:scale(1)}
 .check:hover{border-color:var(--accent)}
+.meal__supps{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.supp-pill{font-family:var(--font-mono);font-size:9.5px;padding:3px 8px;border-radius:6px;background:rgba(var(--accent-rgb),.07);border:1px solid rgba(var(--accent-rgb),.2);color:var(--accent)}
 .meal__right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
 .meal__opts{display:flex;gap:4px}
 .optbtn{width:24px;height:24px;border-radius:6px;border:1.5px solid var(--border-strong);font-family:var(--font-mono);font-size:10px;color:var(--text-faint);display:grid;place-items:center;transition:all .2s var(--ease);-webkit-tap-highlight-color:transparent}
@@ -464,25 +466,25 @@ function updateProtein(){
 
 /* MEALS DATA */
 const MEALS=[
-  {time:'06:00',tag:'Desayuno',opts:[
+  {time:'06:00',tag:'Desayuno',supps:['Tongkat Ali 400–600mg'],opts:[
     {name:'Desayuno de fuerza', items:'5 huevos enteros · avena 1 taza · plátano · café negro',              p:41,k:610,c:58,g:22},
     {name:'Arepa proteica',     items:'4 huevos + 100g queso blanco · 2 arepas de maíz · café negro',        p:40,k:580,c:45,g:24},
     {name:'Avena proteica',     items:'Avena 1 taza + 1 scoop whey · plátano · mant. de maní 1 cda · café',  p:42,k:580,c:62,g:15}
   ]},
-  {time:'11:30',tag:'Post-entreno · Sagrado',opts:[
+  {time:'11:30',tag:'Post-entreno · Sagrado',supps:[],opts:[
     {name:'Shake de proteína',  items:'Whey Nutricost 1 scoop · Creatina 5g · agua fría', p:25,k:130,c:3,g:2}
   ]},
-  {time:'12:00',tag:'Almuerzo',opts:[
+  {time:'12:00',tag:'Almuerzo',supps:['Vitamina D3 2,000 IU','Zinc Picolinate 30mg'],opts:[
     {name:'Almuerzo base',  items:'Pollo / res / pescado 200g · arroz 1 taza · ensalada grande · ½ aguacate', p:48,k:620,c:55,g:20},
     {name:'Atún & arroz',   items:'2 latas de atún · arroz 1 taza · ensalada grande · aceite de oliva',       p:52,k:540,c:50,g:12},
     {name:'Carne & arepa',  items:'Carne molida 200g · 2 arepas · ensalada grande · ½ aguacate',              p:46,k:600,c:52,g:22}
   ]},
-  {time:'15:30',tag:'Snack',opts:[
+  {time:'15:30',tag:'Snack',supps:[],opts:[
     {name:'Yogur griego',   items:'Yogur griego 200g (<8g azúcar)',  p:17,k:130,c:8,g:4},
     {name:'Huevos duros',   items:'3 huevos duros',                  p:18,k:210,c:1,g:15},
     {name:'Atún directo',   items:'1 lata de atún en agua',          p:25,k:100,c:0,g:1}
   ]},
-  {time:'19:00',tag:'Cena',opts:[
+  {time:'19:00',tag:'Cena',supps:['Omega-3 2 cápsulas','Magnesio 300mg — 9:30pm'],opts:[
     {name:'Cena funcional', items:'Carne 200g · ensalada grande · 2 tortillas de maíz · ½ aguacate', p:46,k:580,c:38,g:22},
     {name:'Pollo & papa',   items:'Pollo 200g · papa mediana hervida · ensalada grande · aceite de oliva', p:44,k:540,c:42,g:16},
     {name:'Pescado & arepa',items:'Pescado 200g · 2 arepas · ensalada grande · limón',                     p:42,k:500,c:40,g:10}
@@ -516,6 +518,7 @@ $('#timeline').innerHTML=MEALS.map((m,mi)=>{
         </div>
       </div>
       <div class="macros">${mealOptHtml(o)}</div>
+      ${m.supps&&m.supps.length?`<div class="meal__supps">${m.supps.map(s=>`<span class="supp-pill">💊 ${s}</span>`).join('')}</div>`:''}
     </div>
   </article>`;
 }).join('');
