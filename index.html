@@ -231,8 +231,8 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
     </a>
     <nav class="nav__links">
       <a href="#alimentacion" data-spy="alimentacion">Alimentación</a>
-      <a href="#suplementos" data-spy="suplementos">Suplementos</a>
       <a href="#entrenamiento" data-spy="entrenamiento">Entreno</a>
+      <a href="#suplementos" data-spy="suplementos">Suplementos</a>
     </nav>
   </div>
 </header>
@@ -315,28 +315,12 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
   </div>
 </section>
 
-<!-- SUPLEMENTACIÓN -->
-<section id="suplementos">
-  <div class="wrap">
-    <div class="shead reveal">
-      <div class="shead__kick">
-        <span class="shead__idx">02</span>
-        <span class="label">Stack</span>
-        <span class="line"></span>
-      </div>
-      <h2>Suplementación</h2>
-      <p>Siete básicos respaldados por evidencia. Dosis y timing exactos para recomposición.</p>
-    </div>
-    <div class="supp-grid reveal" id="suppGrid"></div>
-  </div>
-</section>
-
 <!-- ENTRENAMIENTO -->
 <section id="entrenamiento">
   <div class="wrap">
     <div class="shead reveal">
       <div class="shead__kick">
-        <span class="shead__idx">03</span>
+        <span class="shead__idx">02</span>
         <span class="label">Split · 4 días</span>
         <span class="line"></span>
       </div>
@@ -347,6 +331,22 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
   </div>
   <div class="wrap">
     <div id="dayPanels"></div>
+  </div>
+</section>
+
+<!-- SUPLEMENTACIÓN -->
+<section id="suplementos">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="shead__kick">
+        <span class="shead__idx">03</span>
+        <span class="label">Stack</span>
+        <span class="line"></span>
+      </div>
+      <h2>Suplementación</h2>
+      <p>Siete básicos respaldados por evidencia. Dosis y timing exactos para recomposición.</p>
+    </div>
+    <div class="supp-grid reveal" id="suppGrid"></div>
   </div>
 </section>
 
@@ -681,7 +681,7 @@ if(todayTrain) switchTab(todayTrain);
 
 /* SCROLL-SPY + REVEAL */
 const spy=$$('[data-spy]');
-const secs=['alimentacion','suplementos','entrenamiento'].map(id=>document.getElementById(id));
+const secs=['alimentacion','entrenamiento','suplementos'].map(id=>document.getElementById(id));
 function onScroll(){
   const vh=window.innerHeight;
   $$('.reveal:not(.in)').forEach(el=>{
