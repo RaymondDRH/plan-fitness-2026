@@ -151,7 +151,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
 .supp__when b{color:var(--text);font-weight:700}
 
 /* ENTRENAMIENTO */
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:24px}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:24px}
 .day{aspect-ratio:1/1.25;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 2px;transition:all .25s}
 .day__d{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-faint)}
 .day__t{font-family:var(--font-display);font-weight:700;font-size:clamp(9px,2.5vw,15px);line-height:1;text-transform:uppercase}
@@ -492,33 +492,33 @@ const SUPPS = [
 ];
 
 const DAYS = [
-  { key:'lowerA', tab:'Lower', sub:'A · Cuádriceps', focus:'Cuád · Glúteo · Gemelos', vol:'~13 sets', time:'55–65 min', ex:[
-    {n:'Sentadilla con barra',    sets:'4 × 5–8',        vid:'bEv6CCg2BC8', cue:'Profundidad completa SIEMPRE. Baja <b>controlado</b>, sube explosivo.'},
-    {n:'Bulgarian Split Squat',   sets:'3 × 8–10/pierna',vid:'A3ctWjao8cc', cue:'Pie trasero en banco, torso erguido. <b>Obligatoria</b> para piernas delgadas.'},
-    {n:'Prensa de pierna',        sets:'3 × 10–12',      vid:'nDh_BlnLCGc', cue:'Pies a la altura de hombros. No bloquees las rodillas arriba.'},
-    {n:'Extensión cuádriceps',    sets:'3 × 12–15',      vid:'ztNBgrGy6FQ', cue:'Pausa de 1s arriba. Baja <b>lento y controlado</b>.'},
-    {n:'Calf Raise de pie',       sets:'4 × 12–15',      vid:'21inrjhoFkQ', cue:'Rango completo, estira abajo, aprieta <b>fuerte</b> arriba.'}
+  { key:'lowerA', tab:'Lower', sub:'A · Cuádriceps', focus:'Cuád · Glúteo · Gemelos', vol:'~22 sets', time:'60–70 min', ex:[
+    {n:'Sentadilla con barra',    sets:'5 × 5–8',        vid:'bEv6CCg2BC8', cue:'Profundidad completa SIEMPRE. Baja <b>controlado</b>, sube explosivo.'},
+    {n:'Bulgarian Split Squat',   sets:'4 × 8–10/pierna',vid:'A3ctWjao8cc', cue:'Pie trasero en banco, torso erguido. <b>Obligatoria</b> para piernas delgadas.'},
+    {n:'Prensa de pierna',        sets:'4 × 10–12',      vid:'nDh_BlnLCGc', cue:'Pies a la altura de hombros. No bloquees las rodillas arriba.'},
+    {n:'Extensión cuádriceps',    sets:'4 × 12–15',      vid:'ztNBgrGy6FQ', cue:'Pausa de 1s arriba. Baja <b>lento y controlado</b>.'},
+    {n:'Calf Raise de pie',       sets:'5 × 12–15',      vid:'21inrjhoFkQ', cue:'Rango completo, estira abajo, aprieta <b>fuerte</b> arriba.'}
   ]},
-  { key:'upperA', tab:'Upper', sub:'A · Empuje', focus:'Pecho · Hombros · Tríceps', vol:'~16 sets', time:'55–65 min', ex:[
-    {n:'Press banca plano',          sets:'4 × 5–8',   vid:'vcBig73ojpE', cue:'Escápulas retraídas y bajas. Baja a la línea del <b>pezón</b>.'},
-    {n:'Press inclinado mancuernas', sets:'3 × 8–12',  vid:'nwUjPJR5wxw', cue:'Banco 30–45°. Trayectoria hacia el <b>pecho alto</b>.'},
-    {n:'Press militar con barra',    sets:'3 × 8–10',  vid:'_RlRDWO2jfg', cue:'Core firme. No arquees la <b>espalda baja</b>.'},
-    {n:'Elevaciones laterales',      sets:'3 × 12–15', vid:'DquLYDI-CmE', cue:'Codos ligeramente flexionados. Sube al <b>nivel del hombro</b>.'},
-    {n:'Fondos / Press francés',     sets:'3 × 10–12', vid:'popGXI-qs98', cue:'Paralelas: inclínate al frente para <b>pecho</b>. Press francés si no llegas.'}
+  { key:'upperA', tab:'Upper', sub:'A · Empuje', focus:'Pecho · Hombros · Tríceps', vol:'~21 sets', time:'60–70 min', ex:[
+    {n:'Press banca plano',          sets:'5 × 5–8',   vid:'vcBig73ojpE', cue:'Escápulas retraídas y bajas. Baja a la línea del <b>pezón</b>.'},
+    {n:'Press inclinado mancuernas', sets:'4 × 8–12',  vid:'nwUjPJR5wxw', cue:'Banco 30–45°. Trayectoria hacia el <b>pecho alto</b>.'},
+    {n:'Press militar con barra',    sets:'4 × 8–10',  vid:'_RlRDWO2jfg', cue:'Core firme. No arquees la <b>espalda baja</b>.'},
+    {n:'Elevaciones laterales',      sets:'4 × 12–15', vid:'DquLYDI-CmE', cue:'Codos ligeramente flexionados. Sube al <b>nivel del hombro</b>.'},
+    {n:'Fondos / Press francés',     sets:'4 × 10–12', vid:'popGXI-qs98', cue:'Paralelas: inclínate al frente para <b>pecho</b>. Press francés si no llegas.'}
   ]},
-  { key:'lowerB', tab:'Lower', sub:'B · Posterior', focus:'Isquios · Glúteos · Gemelos', vol:'~17 sets', time:'55–65 min', ex:[
-    {n:'Peso muerto convencional', sets:'4 × 5–8',   vid:'VL5Ab0T07e4', cue:'Espalda neutra <b>SIEMPRE</b>. Un error de técnica puede sacarte semanas.'},
-    {n:'Hip Thrust con barra',     sets:'3 × 10–12', vid:'qFxTNOiQIAU', cue:'Hombros en banco. Aprieta glúteo 1s arriba. Cadera <b>paralela</b> al suelo.'},
-    {n:'Romanian Deadlift',        sets:'3 × 10–12', vid:'_oyxCn2iSjU', cue:'Bisagra de cadera. Sientes los <b>femorales</b> estirar.'},
-    {n:'Curl femoral acostado',    sets:'3 × 12–15', vid:'0a_fVS2s4Ho', cue:'Pausa de 1s en la contracción. Baja <b>lento</b>.'},
-    {n:'Calf Raise sentado',       sets:'4 × 12–15', vid:'21inrjhoFkQ', cue:'Músculo diferente al de pie. Tempo lento, <b>máximo rango</b>.'}
+  { key:'lowerB', tab:'Lower', sub:'B · Posterior', focus:'Isquios · Glúteos · Gemelos', vol:'~22 sets', time:'60–70 min', ex:[
+    {n:'Peso muerto convencional', sets:'5 × 5–8',   vid:'VL5Ab0T07e4', cue:'Espalda neutra <b>SIEMPRE</b>. Un error de técnica puede sacarte semanas.'},
+    {n:'Hip Thrust con barra',     sets:'4 × 10–12', vid:'qFxTNOiQIAU', cue:'Hombros en banco. Aprieta glúteo 1s arriba. Cadera <b>paralela</b> al suelo.'},
+    {n:'Romanian Deadlift',        sets:'4 × 10–12', vid:'_oyxCn2iSjU', cue:'Bisagra de cadera. Sientes los <b>femorales</b> estirar.'},
+    {n:'Curl femoral acostado',    sets:'4 × 12–15', vid:'0a_fVS2s4Ho', cue:'Pausa de 1s en la contracción. Baja <b>lento</b>.'},
+    {n:'Calf Raise sentado',       sets:'5 × 12–15', vid:'21inrjhoFkQ', cue:'Músculo diferente al de pie. Tempo lento, <b>máximo rango</b>.'}
   ]},
-  { key:'upperB', tab:'Upper', sub:'B · Jalón', focus:'Espalda · Bíceps', vol:'~16 sets', time:'55–65 min', ex:[
-    {n:'Jalón al pecho',            sets:'4 × 8–10',  vid:'O94yEoGXtBY', cue:'Agarre pronado ancho. Codos hacia el <b>bolsillo</b>.'},
-    {n:'Remo con barra',            sets:'4 × 8–10',  vid:'axoeDmW0oAY', cue:'Torso ~45°. Lleva la barra al <b>ombligo</b>, aprieta espalda.'},
-    {n:'Remo mancuerna unilateral', sets:'3 × 10–12', vid:'djKXLt7kv7Q', cue:'Apoyo en banco. Rango <b>completo</b>, sin rotar el torso.'},
-    {n:'Curl barra EZ',             sets:'3 × 10–12', vid:'i1YgFZB6alI', cue:'Codos quietos. <b>Sin balanceo</b> del torso.'},
-    {n:'Curl martillo',             sets:'2 × 12–15', vid:'BRVDS6HVR9Q', cue:'Agarre neutro. Trabaja <b>braquial</b> y bíceps.'}
+  { key:'upperB', tab:'Upper', sub:'B · Jalón', focus:'Espalda · Bíceps', vol:'~21 sets', time:'60–70 min', ex:[
+    {n:'Jalón al pecho',            sets:'5 × 8–10',  vid:'O94yEoGXtBY', cue:'Agarre pronado ancho. Codos hacia el <b>bolsillo</b>.'},
+    {n:'Remo con barra',            sets:'5 × 8–10',  vid:'axoeDmW0oAY', cue:'Torso ~45°. Lleva la barra al <b>ombligo</b>, aprieta espalda.'},
+    {n:'Remo mancuerna unilateral', sets:'4 × 10–12', vid:'djKXLt7kv7Q', cue:'Apoyo en banco. Rango <b>completo</b>, sin rotar el torso.'},
+    {n:'Curl barra EZ',             sets:'4 × 10–12', vid:'i1YgFZB6alI', cue:'Codos quietos. <b>Sin balanceo</b> del torso.'},
+    {n:'Curl martillo',             sets:'3 × 12–15', vid:'BRVDS6HVR9Q', cue:'Agarre neutro. Trabaja <b>braquial</b> y bíceps.'}
   ]}
 ];
 
@@ -527,9 +527,7 @@ const WEEK = [
   {d:'Mar',t:'Upper A',train:'upperA'},
   {d:'Mié',t:'Rest',   train:null},
   {d:'Jue',t:'Lower B',train:'lowerB'},
-  {d:'Vie',t:'Upper B',train:'upperB'},
-  {d:'Sáb',t:'Rest',   train:null},
-  {d:'Dom',t:'Rest',   train:null}
+  {d:'Vie',t:'Upper B',train:'upperB'}
 ];
 
 /* THEME */
@@ -579,7 +577,7 @@ $('#suppGrid').innerHTML=SUPPS.map(s=>`
   </article>`).join('');
 
 /* WEEK */
-const jsToIdx=[6,0,1,2,3,4,5];
+const jsToIdx=[-1,0,1,2,3,4,-1];
 const todayIdx=jsToIdx[new Date().getDay()];
 $('#week').innerHTML=WEEK.map((w,i)=>{
   const cls=(w.train?'train':'rest')+(i===todayIdx?' today':'');
