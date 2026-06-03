@@ -1298,7 +1298,7 @@
 </footer>
 
 <script>
-  /* Day tab switching */
+  /* Day tab switching — also stops all videos when changing day */
   const tabs = document.querySelectorAll('.day-tab');
   const panels = document.querySelectorAll('.day-panel');
 
@@ -1307,30 +1307,52 @@
       tabs.forEach(t => t.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
       tab.classList.add('active');
-      const panelId = tab.dataset.panel;
-      document.getElementById(panelId).classList.add('active');
+      document.getElementById(tab.dataset.panel).classList.add('active');
+      stopAllVideos();
     });
   });
 
-  /* Lazy load YouTube videos when exercise card is opened */
-  document.querySelectorAll('.video-wrap').forEach(wrap => {
-    const card = wrap.closest('details');
-    if (!card) return;
-    card.addEventListener('toggle', function () {
-      if (this.open && !wrap.querySelector('iframe')) {
-        const vid = wrap.dataset.vid;
-        wrap.innerHTML = `<iframe
-          src="https://www.youtube-nocookie.com/embed/${vid}?rel=0&modestbranding=1"
-          title="Tutorial de ejercicio"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          loading="lazy">
-        </iframe>`;
+  function stopAllVideos() {
+    document.querySelectorAll('details.ex-card').forEach(d => {
+      const wrap = d.querySelector('.video-wrap');
+      if (wrap && wrap.querySelector('iframe')) {
+        wrap.innerHTML = `<div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>`;
+      }
+      d.open = false;
+    });
+  }
+
+  /* Exercise cards — solo una abierta a la vez, el video anterior se destruye */
+  document.querySelectorAll('details.ex-card').forEach(detail => {
+    detail.addEventListener('toggle', function () {
+      if (this.open) {
+        /* Cerrar todas las demás y destruir sus iframes */
+        document.querySelectorAll('details.ex-card').forEach(other => {
+          if (other === this) return;
+          const wrap = other.querySelector('.video-wrap');
+          if (wrap && wrap.querySelector('iframe')) {
+            wrap.innerHTML = `<div class="video-placeholder"><div class="play-icon">▶</div>Toca para ver el video</div>`;
+          }
+          other.open = false;
+        });
+
+        /* Cargar el video de esta tarjeta si aún no existe */
+        const wrap = this.querySelector('.video-wrap');
+        if (wrap && !wrap.querySelector('iframe')) {
+          const vid = wrap.dataset.vid;
+          wrap.innerHTML = `<iframe
+            src="https://www.youtube-nocookie.com/embed/${vid}?rel=0&modestbranding=1"
+            title="Tutorial de ejercicio"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>`;
+        }
       }
     });
   });
 
-  /* Highlight active section in nav on scroll */
+  /* Highlight activo en nav al hacer scroll */
   const sections = document.querySelectorAll('section[id]');
   const navBtns = document.querySelectorAll('.nav-btn');
   const observer = new IntersectionObserver(entries => {
