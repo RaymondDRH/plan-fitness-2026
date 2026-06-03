@@ -89,13 +89,13 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
 .hero__name em{font-style:normal;color:var(--accent);transition:color .3s}
 .hero__goal{font-size:13px;color:var(--text-dim);letter-spacing:.04em}
 .hero__goal b{color:var(--text);font-weight:700}
-.ring{position:relative;width:92px;height:92px;flex:none}
-.ring svg{transform:rotate(-90deg);display:block}
+.ring{position:relative;width:110px;height:110px;flex:none}
+.ring svg{transform:rotate(-90deg);display:block;width:110px;height:110px}
 .ring__bg{fill:none;stroke:var(--surface-2);stroke-width:9}
 .ring__fg{fill:none;stroke:var(--accent);stroke-width:9;stroke-linecap:round;filter:drop-shadow(0 0 5px var(--glow));transition:stroke-dashoffset .7s var(--ease),stroke .3s}
-.ring__txt{position:absolute;inset:0;display:grid;place-items:center;text-align:center;line-height:1}
-.ring__txt b{font-family:var(--font-mono);font-size:20px}
-.ring__txt span{font-size:9px;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+.ring__txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:3px}
+.ring__txt b{font-family:var(--font-mono);font-size:22px;line-height:1}
+.ring__txt span{font-size:10px;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase;line-height:1}
 .stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:22px}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 13px;transition:border-color .25s,background .25s}
 .stat:hover{border-color:rgba(var(--accent-rgb),.5);background:var(--surface-2)}
@@ -133,6 +133,11 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
 .meal.done .check,.ex.done .check{background:var(--accent);border-color:var(--accent);box-shadow:0 0 14px var(--glow)}
 .meal.done .check svg,.ex.done .check svg{opacity:1;transform:scale(1)}
 .check:hover{border-color:var(--accent)}
+.meal__right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
+.meal__opts{display:flex;gap:4px}
+.optbtn{width:24px;height:24px;border-radius:6px;border:1.5px solid var(--border-strong);font-family:var(--font-mono);font-size:10px;color:var(--text-faint);display:grid;place-items:center;transition:all .2s var(--ease);-webkit-tap-highlight-color:transparent}
+.optbtn:hover{border-color:var(--accent);color:var(--text)}
+.optbtn.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .macros{display:flex;gap:7px;margin-top:12px;flex-wrap:wrap}
 .macro{font-family:var(--font-mono);font-size:10.5px;padding:3px 8px;border-radius:6px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-dim)}
 .macro b{color:var(--text)}
@@ -306,109 +311,7 @@ section[id]{scroll-margin-top:calc(var(--nav-h) + 8px)}
       </div>
       <div class="track"><div class="track__fill" id="proteinFill"></div></div>
     </div>
-    <div class="timeline" id="timeline">
-
-      <article class="meal reveal" data-protein="41">
-        <div class="meal__node"></div><div class="meal__time">06:00</div>
-        <div class="card meal__card">
-          <div class="meal__head">
-            <div class="meal__info">
-              <div class="meal__tag">Desayuno</div>
-              <div class="meal__name">Desayuno de fuerza</div>
-              <div class="meal__items">5 huevos enteros · avena 1 taza · plátano · café negro sin azúcar</div>
-            </div>
-            <button class="check" aria-label="Marcar comida"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg></button>
-          </div>
-          <div class="macros">
-            <span class="macro macro--kcal">🔥 <b>610</b> kcal</span>
-            <span class="macro">P <b>41</b>g</span>
-            <span class="macro">C <b>58</b>g</span>
-            <span class="macro">G <b>22</b>g</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="meal reveal" data-protein="25">
-        <div class="meal__node"></div><div class="meal__time">11:30</div>
-        <div class="card meal__card">
-          <div class="meal__head">
-            <div class="meal__info">
-              <div class="meal__tag">Post-entreno · Sagrado</div>
-              <div class="meal__name">Shake de proteína</div>
-              <div class="meal__items">Whey Nutricost 1 scoop · Creatina 5g · agua fría</div>
-            </div>
-            <button class="check" aria-label="Marcar comida"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg></button>
-          </div>
-          <div class="macros">
-            <span class="macro macro--kcal">🔥 <b>130</b> kcal</span>
-            <span class="macro">P <b>25</b>g</span>
-            <span class="macro">C <b>3</b>g</span>
-            <span class="macro">G <b>2</b>g</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="meal reveal" data-protein="48">
-        <div class="meal__node"></div><div class="meal__time">12:00</div>
-        <div class="card meal__card">
-          <div class="meal__head">
-            <div class="meal__info">
-              <div class="meal__tag">Almuerzo</div>
-              <div class="meal__name">Almuerzo base</div>
-              <div class="meal__items">Pollo / res / pescado 200g · arroz 1 taza · ensalada grande · ½ aguacate</div>
-            </div>
-            <button class="check" aria-label="Marcar comida"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg></button>
-          </div>
-          <div class="macros">
-            <span class="macro macro--kcal">🔥 <b>620</b> kcal</span>
-            <span class="macro">P <b>48</b>g</span>
-            <span class="macro">C <b>55</b>g</span>
-            <span class="macro">G <b>20</b>g</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="meal reveal" data-protein="21">
-        <div class="meal__node"></div><div class="meal__time">15:30</div>
-        <div class="card meal__card">
-          <div class="meal__head">
-            <div class="meal__info">
-              <div class="meal__tag">Snack</div>
-              <div class="meal__name">Snack proteico</div>
-              <div class="meal__items">Opción A: yogur griego 200g · Opción B: 3 huevos duros · Opción C: 1 lata de atún</div>
-            </div>
-            <button class="check" aria-label="Marcar comida"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg></button>
-          </div>
-          <div class="macros">
-            <span class="macro macro--kcal">🔥 <b>200</b> kcal</span>
-            <span class="macro">P <b>21</b>g</span>
-            <span class="macro">C <b>8</b>g</span>
-            <span class="macro">G <b>5</b>g</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="meal reveal" data-protein="46">
-        <div class="meal__node"></div><div class="meal__time">19:00</div>
-        <div class="card meal__card">
-          <div class="meal__head">
-            <div class="meal__info">
-              <div class="meal__tag">Cena</div>
-              <div class="meal__name">Cena funcional</div>
-              <div class="meal__items">Carne 200g · ensalada grande · 2 tortillas de maíz · ½ aguacate</div>
-            </div>
-            <button class="check" aria-label="Marcar comida"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg></button>
-          </div>
-          <div class="macros">
-            <span class="macro macro--kcal">🔥 <b>580</b> kcal</span>
-            <span class="macro">P <b>46</b>g</span>
-            <span class="macro">C <b>38</b>g</span>
-            <span class="macro">G <b>22</b>g</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
+    <div class="timeline" id="timeline"></div>
   </div>
 </section>
 
@@ -503,9 +406,9 @@ const DAYS = [
     {n:'Fondos / Press francés',     sets:'3 × 10–12', vid:'popGXI-qs98', cue:'Paralelas: inclínate al frente para <b>pecho</b>. Press francés si no llegas.'}
   ]},
   { key:'core', tab:'Miércoles', sub:'Core · Cardio', focus:'Abs · Zone 2', vol:'~12 sets', time:'~50 min', ex:[
-    {n:'Plancha frontal',           sets:'3 × 40 seg',  vid:'44ScXWFaVBs', cue:'Cuerpo recto de cabeza a talones. <b>No dejes caer las caderas</b>.'},
-    {n:'Crunch en máquina',         sets:'3 × 15',      vid:'XydnZuKQS3k', cue:'Aprieta el abdomen en la parte más baja. <b>No uses el cuello</b>.'},
-    {n:'Elevación piernas colgado', sets:'3 × 10–12',   vid:'Pr1ieGZ5atk', cue:'Piernas juntas, sube controlado. <b>Sin impulso</b>.'},
+    {n:'Plancha frontal',           sets:'3 × 40 seg',  vid:'ASdvN_XEl_c', cue:'Cuerpo recto de cabeza a talones. <b>No dejes caer las caderas</b>.'},
+    {n:'Crunch en máquina',         sets:'3 × 15',      vid:'_GEDPgECKGw', cue:'Aprieta el abdomen en la parte más baja. <b>No uses el cuello</b>.'},
+    {n:'Elevación piernas colgado', sets:'3 × 10–12',   vid:'hdng3Nm1x70', cue:'Piernas juntas, sube controlado. <b>Sin impulso</b>.'},
     {n:'Bird Dog',                  sets:'3 × 10/lado', vid:'wiFNA3sqjCA', cue:'Columna neutra. Extiende brazo y pierna opuestos al mismo tiempo.'},
     {n:'Zone 2 Cardio',             sets:'1 × 30 min',  vid:null,          cue:'Caminadora, bici o elíptica a <b>60–70% de tu FC máxima</b>. Debes poder mantener una conversación.'}
   ]},
@@ -559,15 +462,89 @@ function updateProtein(){
   $('#proteinFill').style.width=pct+'%';
 }
 
-/* MEALS */
-$$('.meal').forEach((m,i)=>{
-  const id='meal'+i;
+/* MEALS DATA */
+const MEALS=[
+  {time:'06:00',tag:'Desayuno',opts:[
+    {name:'Desayuno de fuerza', items:'5 huevos enteros · avena 1 taza · plátano · café negro',              p:41,k:610,c:58,g:22},
+    {name:'Arepa proteica',     items:'4 huevos + 100g queso blanco · 2 arepas de maíz · café negro',        p:40,k:580,c:45,g:24},
+    {name:'Avena proteica',     items:'Avena 1 taza + 1 scoop whey · plátano · mant. de maní 1 cda · café',  p:42,k:580,c:62,g:15}
+  ]},
+  {time:'11:30',tag:'Post-entreno · Sagrado',opts:[
+    {name:'Shake de proteína',  items:'Whey Nutricost 1 scoop · Creatina 5g · agua fría', p:25,k:130,c:3,g:2}
+  ]},
+  {time:'12:00',tag:'Almuerzo',opts:[
+    {name:'Almuerzo base',  items:'Pollo / res / pescado 200g · arroz 1 taza · ensalada grande · ½ aguacate', p:48,k:620,c:55,g:20},
+    {name:'Atún & arroz',   items:'2 latas de atún · arroz 1 taza · ensalada grande · aceite de oliva',       p:52,k:540,c:50,g:12},
+    {name:'Carne & arepa',  items:'Carne molida 200g · 2 arepas · ensalada grande · ½ aguacate',              p:46,k:600,c:52,g:22}
+  ]},
+  {time:'15:30',tag:'Snack',opts:[
+    {name:'Yogur griego',   items:'Yogur griego 200g (<8g azúcar)',  p:17,k:130,c:8,g:4},
+    {name:'Huevos duros',   items:'3 huevos duros',                  p:18,k:210,c:1,g:15},
+    {name:'Atún directo',   items:'1 lata de atún en agua',          p:25,k:100,c:0,g:1}
+  ]},
+  {time:'19:00',tag:'Cena',opts:[
+    {name:'Cena funcional', items:'Carne 200g · ensalada grande · 2 tortillas de maíz · ½ aguacate', p:46,k:580,c:38,g:22},
+    {name:'Pollo & papa',   items:'Pollo 200g · papa mediana hervida · ensalada grande · aceite de oliva', p:44,k:540,c:42,g:16},
+    {name:'Pescado & arepa',items:'Pescado 200g · 2 arepas · ensalada grande · limón',                     p:42,k:500,c:40,g:10}
+  ]}
+];
+
+/* MEALS RENDER */
+function mealOptHtml(o){
+  return `<span class="macro macro--kcal">🔥 <b>${o.k}</b> kcal</span>
+    <span class="macro">P <b>${o.p}</b>g</span>
+    <span class="macro">C <b>${o.c}</b>g</span>
+    <span class="macro">G <b>${o.g}</b>g</span>`;
+}
+$('#timeline').innerHTML=MEALS.map((m,mi)=>{
+  const sel=store['mo'+mi]||0;
+  const o=m.opts[sel];
+  const hasOpts=m.opts.length>1;
+  const optBtns=hasOpts?`<div class="meal__opts">${m.opts.map((_,oi)=>`<button class="optbtn${oi===sel?' active':''}" data-mi="${mi}" data-oi="${oi}">${oi+1}</button>`).join('')}</div>`:'';
+  return `<article class="meal reveal" data-mi="${mi}" data-protein="${o.p}">
+    <div class="meal__node"></div><div class="meal__time">${m.time}</div>
+    <div class="card meal__card">
+      <div class="meal__head">
+        <div class="meal__info">
+          <div class="meal__tag">${m.tag}</div>
+          <div class="meal__name">${o.name}</div>
+          <div class="meal__items">${o.items}</div>
+        </div>
+        <div class="meal__right">
+          ${optBtns}
+          <button class="check" aria-label="Marcar comida"><svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg></button>
+        </div>
+      </div>
+      <div class="macros">${mealOptHtml(o)}</div>
+    </div>
+  </article>`;
+}).join('');
+
+/* MEALS EVENTS */
+$$('.meal').forEach(m=>{
+  const mi=parseInt(m.dataset.mi);
+  const id='meal'+mi;
   if(store[id]) m.classList.add('done');
   $('.check',m).addEventListener('click',()=>{
     m.classList.toggle('done');
     store[id]=m.classList.contains('done'); save();
     updateProtein();
   });
+});
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.optbtn');
+  if(!btn) return;
+  const mi=parseInt(btn.dataset.mi);
+  const oi=parseInt(btn.dataset.oi);
+  const meal=document.querySelector(`.meal[data-mi="${mi}"]`);
+  const o=MEALS[mi].opts[oi];
+  meal.querySelector('.meal__name').textContent=o.name;
+  meal.querySelector('.meal__items').textContent=o.items;
+  meal.querySelector('.macros').innerHTML=mealOptHtml(o);
+  meal.dataset.protein=o.p;
+  $$('.optbtn',meal).forEach(b=>b.classList.toggle('active',parseInt(b.dataset.oi)===oi));
+  store['mo'+mi]=oi; save();
+  if(meal.classList.contains('done')) updateProtein();
 });
 
 /* SUPPLEMENTS */
